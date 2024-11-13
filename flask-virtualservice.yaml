@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: flask-blog-virtualservice
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - flask-blog-gateway
+  http:
+    - match:
+        - uri:
+            exact: /
+      route:
+        - destination:
+            host: flask-blog-service
+            port:
+              number: 80
